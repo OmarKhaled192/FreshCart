@@ -1,0 +1,26 @@
+<div class="container">
+  <div class="row pt-5 mt-5 justify-content-between align-items-center py-3 " *ngIf="product"> <!-- if product already exist -->
+      <div class="col-md-4">
+        <img [src]="product.imageCover" class="img-fluid" alt="">
+      </div>
+      <div class="col-md-8">
+        <div class="details">
+          <h2>{{product.title}}</h2>
+          <p>{{product.description}}</p>
+          <p>{{product.category.name}}</p>
+          <div class="info d-flex justify-content-between align-items-center">
+            <div class="left">
+                <p>Price : {{product.price}} EG </p>
+                <p><i class="fa-solid fa-star rating-color"></i> {{product.ratingsAverage}}</p>
+            </div>
+            <div class="right">
+          <div class="wishlist text-danger cursor-pointer">
+              <i class="fa-regular fa-heart fa-2x" *ngIf="!wishAdd"(click)="addItemToWish(product._id)"></i>
+              <i class="fa-solid fa-heart fa-2x" *ngIf="wishAdd" (click)="deleteItemFromWish(product._id)"></i></div>
+            </div>
+          </div>
+          <button class="btn btn-success text-center w-100" (click)="addCartClick(product._id)">add to cart <i class="fas fa-spinner fa-pulse" *ngIf="loadingAdd"></i> </button>
+        </div>
+      </div>
+  </div>
+</div>

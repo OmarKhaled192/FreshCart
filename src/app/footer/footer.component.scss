@@ -1,0 +1,34 @@
+footer {
+  background-color: #f0f3f2;
+}
+p {
+  padding: 0 !important;
+  margin-block: 10px !important;
+}
+form {
+  width: 98%;
+  margin-inline: auto;
+}
+
+.partners, .socials {
+  p, .icons {
+    margin: 10px;
+  }
+  .icons img {
+    width: 50px;
+    display: inline-block;
+    padding-inline: 5px;
+  }
+}
+
+.socials {
+  .icons img {
+    width: 100px;
+  }
+}
+
+
+form , .connections{
+  border-bottom: 1px solid #e7e7e7;
+  padding-block: 10px;
+}

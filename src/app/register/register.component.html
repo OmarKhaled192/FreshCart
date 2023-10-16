@@ -1,0 +1,60 @@
+<div class="errorMsg alert alert-danger w-50 text-center mx-auto my-3" *ngIf="errorMessage"><i class="fa-solid fa-triangle-exclamation"></i> {{errorMessage}}</div>
+<div class="container my-5 py-5">
+  <h2 class="fs-3 py-3 ">Register Now : </h2>
+  <form class="w-75 mx-auto" [formGroup]="registerForm" (ngSubmit)="registerSubmit(registerForm)">
+    <div class="form-group my-3">
+      <label for="name" [class.text-danger]="registerForm.get('name')?.errors && registerForm.get('name')?.touched" [class.text-success]="!registerForm.get('name')?.errors && registerForm.get('name')?.touched"><i class="fa-solid fa-user"></i> user Name</label>
+      <input type="text" name="name" formControlName="name" class="form-control" >
+      <div *ngIf="registerForm.get('name')?.errors && registerForm.get('name')?.touched" class="alert alert-danger my-2">
+        <p *ngIf="registerForm.get('name')?.errors?.['required']">Name is required field</p>
+        <p *ngIf="registerForm.get('name')?.errors?.['minlength']">minLength of name should be 3 chars</p>
+        <p *ngIf="registerForm.get('name')?.errors?.['maxlength']">maxLength of name should be 15 chars</p>
+      </div>
+    </div>
+    <div class="form-group my-3">
+      <label for="email" [class.text-danger]="registerForm.get('email')?.errors && registerForm.get('email')?.touched" [class.text-success]="!registerForm.get('email')?.errors && registerForm.get('email')?.touched"><i class="fa-solid fa-envelope"></i> email</label>
+      <input type="email" formControlName="email"  name="email" class="form-control" >
+      <div *ngIf="registerForm.get('email')?.errors && registerForm.get('email')?.touched" class="alert alert-danger my-2">
+        <p *ngIf="registerForm.get('email')?.errors?.['required']">email is required field</p>
+        <p *ngIf="registerForm.get('email')?.errors?.['email']">You Should Enter a Vaild Email </p>
+      </div>
+    </div>
+    <div class="form-group my-3">
+      <label for="age" [class.text-danger]="registerForm.get('age')?.errors && registerForm.get('age')?.touched" [class.text-success]="!registerForm.get('age')?.errors && registerForm.get('age')?.touched"
+      ><i class="fa-solid fa-plus"></i> <i class="fa-solid fa-1 px-2"></i> <i class="fa-solid fa-0"></i> age</label>
+      <input type="text" formControlName="age"  name="age" class="form-control" >
+      <div *ngIf="registerForm.get('age')?.errors && registerForm.get('age')?.touched" class="alert alert-danger my-2">
+        <p *ngIf="registerForm.get('age')?.errors?.['required']">age is required field</p>
+        <p *ngIf="registerForm.get('age')?.errors?.['pattern']">age should be a number</p>
+        <p *ngIf="registerForm.get('age')?.errors?.['min']">your age should be more than 10 year</p>
+        <p *ngIf="registerForm.get('age')?.errors?.['max']">your age should be less than 150 year</p>
+      </div>
+    </div>
+    <div class="form-group my-3">
+      <label for="password" [class.text-danger]="registerForm.get('password')?.errors && registerForm.get('password')?.touched" [class.text-success]="!registerForm.get('password')?.errors && registerForm.get('password')?.touched"><i class="fa-solid fa-key px-2"></i>password</label>
+      <input type="text" formControlName="password" name="password" class="form-control" >
+      <div *ngIf="registerForm.get('password')?.errors && registerForm.get('password')?.touched" class="alert alert-danger my-2">
+        <p *ngIf="registerForm.get('password')?.errors?.['required']">password is required field</p>
+        <p *ngIf="registerForm.get('password')?.errors?.['pattern']">your password should be have Capital letter at the first</p>
+      </div>
+    </div>
+    <div class="form-group my-3">
+      <label for="rePassword" [class.text-danger]="registerForm.get('rePassword')?.touched && registerForm.get('rePassword')?.value && registerForm.errors?.['mismatch']" [class.text-success]="registerForm.get('rePassword')?.touched && registerForm.get('rePassword')?.value && !registerForm.errors?.['mismatch']"><i class="fa-solid fa-key px-2"></i>confirm password </label>
+      <input type="text" formControlName="rePassword" name="rePassword" class="form-control" >
+      <p class="alert alert-danger my-2" *ngIf="registerForm.get('rePassword')?.touched && registerForm.get('rePassword')?.value && registerForm.errors?.['mismatch']"> Passwords should be equal</p>
+
+
+    </div>
+    <div class="form-group my-3">
+      <label for="phone" [class.text-danger]="registerForm.get('phone')?.errors && registerForm.get('phone')?.touched" [class.text-success]="!registerForm.get('phone')?.errors && registerForm.get('phone')?.touched"><i class="fa-solid fa-phone px-2"></i>phone</label>
+      <input type="text" formControlName="phone" name="phone"  class="form-control" >
+      <div *ngIf="registerForm.get('phone')?.errors && registerForm.get('phone')?.touched" class="alert alert-danger my-2">
+        <p *ngIf="registerForm.get('phone')?.errors?.['required']">phone is required field</p>
+        <p *ngIf="registerForm.get('phone')?.errors?.['pattern']">your phone should be valid</p>
+      </div>
+    </div>
+    <div class="form-group cursor-notAllowed w-fit-content">
+      <button class="btn btn-outline-success" type="submit" [disabled]="registerForm.invalid">Register <i class="fa-solid fa-user-plus" *ngIf="!loading"></i> <i class="fas fa-spinner fa-pulse" *ngIf="loading"></i></button>
+    </div>
+  </form>
+</div>

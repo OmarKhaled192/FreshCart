@@ -1,0 +1,21 @@
+<div class="container my-5 py-5">
+  <h2 class="fs-1 text-center text-success" >Check-out </h2>
+  <form class="w-75 mx-auto " [formGroup]="checkOutForm">
+    <div class="form-group justify-content-between align-items-center">
+      <label for="details" class="fs-5 py-3 fw-bold">Details : </label>
+      <input formControlName="details" type="text" class="form-control shadow-none w-75" id="details">
+    </div>
+    <div class="form-group pt-4 justify-content-between align-items-center">
+      <label for="details" class="fs-5 py-3 fw-bold">Phone : </label>
+      <input formControlName="phone" type="text" class="form-control shadow-none w-75" id="details">
+    </div>
+    <div class="form-group pt-4 justify-content-between align-items-center">
+      <label for="details" class="fs-5 py-3 fw-bold">City : </label>
+      <input formControlName="city" type="text" class="form-control shadow-none w-75" id="details">
+    </div>
+    <div class="form-group pt-4 d-flex flex-column justify-content-start w-25">
+      <button class="btn btn-success my-1" (click)="payCashSubmit(checkOutForm)" type="submit">Pay Cash</button>
+      <button class="btn btn-warning my-1" (click)="payVisaSubmit(checkOutForm)" type="submit">Pay visa</button>
+    </div>
+  </form>
+</div>

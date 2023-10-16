@@ -1,0 +1,138 @@
+<div class="container my-5 py-5">
+  <h2 class="fs-3 py-3 ">Login Now : </h2>
+  <div class="errorMsg alert alert-danger w-50 text-center mx-auto my-2" *ngIf="errorMessage"><i class="fa-solid fa-triangle-exclamation"></i> {{errorMessage}}</div>
+  <form class="w-75 my-5 mx-auto" [formGroup]="loginForm" (ngSubmit)="loginSubmit(loginForm)">
+
+    <div class="form-group my-3">
+      <label for="email" [class.text-danger]="loginForm.get('email')?.errors && loginForm.get('email')?.touched" [class.text-success]="!loginForm.get('email')?.errors && loginForm.get('email')?.touched"><i class="fa-solid fa-envelope"></i> email</label>
+      <input type="email" formControlName="email"  name="email" class="form-control" >
+      <div *ngIf="loginForm.get('email')?.errors && loginForm.get('email')?.touched" class="alert alert-danger my-2">
+        <p *ngIf="loginForm.get('email')?.errors?.['required']">email is required field</p>
+        <p *ngIf="loginForm.get('email')?.errors?.['email']">You Should Enter a Vaild Email </p>
+      </div>
+    </div>
+
+    <div class="form-group my-3">
+      <label for="password" [class.text-danger]="loginForm.get('password')?.errors && loginForm.get('password')?.touched" [class.text-success]="!loginForm.get('password')?.errors && loginForm.get('password')?.touched"><i class="fa-solid fa-key px-2"></i>password</label>
+      <input type="text" formControlName="password" name="password" class="form-control" >
+      <div *ngIf="loginForm.get('password')?.errors && loginForm.get('password')?.touched" class="alert alert-danger my-2">
+        <p *ngIf="loginForm.get('password')?.errors?.['required']">password is required field</p>
+        <p *ngIf="loginForm.get('password')?.errors?.['pattern']">your password should be have Capital letter at the first</p>
+      </div>
+    </div>
+
+
+    <div class="form-group cursor-notAllowed w-fit-content">
+      <button class="btn btn-outline-success" type="submit" [disabled]="loginForm.invalid">Login <i class="fa-solid fa-user-plus" *ngIf="!loading"></i> <i class="fas fa-spinner fa-pulse" *ngIf="loading"></i></button>
+        <!-- Button trigger modal -->
+      <button type="button" (click)="resetError()" class="btn text-main text-capitalize" data-bs-toggle="modal" data-bs-target="#forgetPassword">
+        forget password
+      </button>
+
+    </div>
+  </form>
+
+  <!-- Modal -->
+    <div class="modal mt-5 fade" id="forgetPassword" tabindex="-1" aria-labelledby="forgetPasswordLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="forgetPasswordLabel">Forget Password</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" id="closeBtn"></button>
+          </div>
+          <div class="modal-body">
+            <div class="errorMsg alert alert-danger w-75 text-center mx-auto my-2" *ngIf="errorMessageModel"><i
+                class="fa-solid fa-triangle-exclamation"></i> {{errorMessageModel}}</div>
+            <!-- Forget password form  -->
+            <form *ngIf="isForgetForm" class="w-75 mx-auto formForget" [formGroup]="forgetForm"
+              (ngSubmit)="forgetSubmit(forgetForm)">
+
+              <div class="form-group my-3">
+                <label for="email" [class.text-danger]="forgetForm.get('email')?.errors && forgetForm.get('email')?.touched"
+                  [class.text-success]="!forgetForm.get('email')?.errors && forgetForm.get('email')?.touched"><i
+                    class="fa-solid fa-envelope"></i> email</label>
+                <input type="email" formControlName="email" name="email" class="form-control">
+                <div *ngIf="forgetForm.get('email')?.errors && forgetForm.get('email')?.touched"
+                  class="alert alert-danger my-2">
+                  <p *ngIf="forgetForm.get('email')?.errors?.['required']">email is required field</p>
+                  <p *ngIf="forgetForm.get('email')?.errors?.['email']">You Should Enter a Vaild Email </p>
+                </div>
+              </div>
+
+              <div class="form-group d-flex justify-content-end" *ngIf="!forgetLoading">
+                <div class="container-btn cursor-notAllowed">
+                  <button class=" btn btn-outline-info " type="submit" [disabled]="forgetForm.invalid">send to email <i
+                      class="fa-solid fa-arrow-right"></i> </button>
+                </div>
+              </div>
+              <mat-progress-bar mode="indeterminate" *ngIf="forgetLoading"></mat-progress-bar>
+            </form>
+
+            <!-- reset code form -->
+            <form *ngIf="isCodeForm" class="w-75 mx-auto formCode" [formGroup]="codeForm" (ngSubmit)="codeSubmit(codeForm)">
+
+              <div class="form-group my-3">
+                <label for="resetCode"
+                  [class.text-danger]="codeForm.get('resetCode')?.errors && codeForm.get('resetCode')?.touched"
+                  [class.text-success]="!codeForm.get('resetCode')?.errors && codeForm.get('resetCode')?.touched"><i
+                    class="fa-solid fa-envelope"></i> resetCode</label>
+                <input type="text" formControlName="resetCode" name="resetCode" class="form-control">
+                <div *ngIf="codeForm.get('resetCode')?.errors && codeForm.get('resetCode')?.touched"
+                  class="alert alert-danger my-2">
+                  <p *ngIf="codeForm.get('resetCode')?.errors?.['required']">reset Code is required field</p>
+                </div>
+              </div>
+
+              <div class="form-group d-flex justify-content-end" *ngIf="!codeLoading">
+                <div class="container-btn cursor-notAllowed">
+                  <button class=" btn btn-outline-info " type="submit" [disabled]="codeForm.invalid">Verify Your Code <i
+                      class="fa-solid fa-arrow-right"></i> </button>
+                </div>
+              </div>
+              <mat-progress-bar mode="indeterminate" *ngIf="codeLoading"></mat-progress-bar>
+            </form>
+
+            <!-- new password form -->
+            <form *ngIf="isNewPassWordForm" class="w-75 mx-auto formNewPassword" [formGroup]="newPasswordForm"
+              (ngSubmit)="newPasswordSubmit(newPasswordForm)">
+
+              <div class="form-group my-3">
+                <label for="email"
+                  [class.text-danger]="newPasswordForm.get('email')?.errors && newPasswordForm.get('email')?.touched"
+                  [class.text-success]="!newPasswordForm.get('email')?.errors && newPasswordForm.get('email')?.touched"><i
+                    class="fa-solid fa-envelope"></i> email</label>
+                <input type="email" formControlName="email" name="email" class="form-control">
+                <div *ngIf="newPasswordForm.get('email')?.errors && newPasswordForm.get('email')?.touched"
+                  class="alert alert-danger my-2">
+                  <p *ngIf="newPasswordForm.get('email')?.errors?.['required']">reset Code is required field</p>
+                </div>
+              </div>
+
+              <div class="form-group my-3">
+                <label for="newPassword"
+                  [class.text-danger]="newPasswordForm.get('newPassword')?.errors && newPasswordForm.get('newPassword')?.touched"
+                  [class.text-success]="!newPasswordForm.get('newPassword')?.errors && newPasswordForm.get('newPassword')?.touched"><i
+                    class="fa-solid fa-key px-2"></i>newPassword</label>
+                <input type="text" formControlName="newPassword" name="newPassword" class="form-control">
+                <div *ngIf="newPasswordForm.get('newPassword')?.errors && newPasswordForm.get('newPassword')?.touched"
+                  class="alert alert-danger my-2">
+                  <p *ngIf="newPasswordForm.get('newPassword')?.errors?.['required']">newPassword is required field</p>
+                  <p *ngIf="newPasswordForm.get('newPassword')?.errors?.['pattern']">your password should be have Capital
+                    letter at the first</p>
+                </div>
+              </div>
+
+              <div class="form-group d-flex justify-content-end">
+                <div class="container-btn cursor-notAllowed">
+                  <button class=" btn btn-outline-info " type="submit" [disabled]="newPasswordForm.invalid">set your
+                    password <i class="fa-solid fa-arrow-right"></i> </button>
+                </div>
+              </div>
+            </form>
+
+          </div>
+        </div>
+      </div>
+    </div>
+</div>
+

@@ -1,0 +1,9 @@
+{
+  "editor.defaultFormatter": "onixie.angular-component-extension",
+  "angular.forceStrictTemplates": false,
+  "angular2-switcher.templateFormats": [
+    ".html"
+
+  ]
+  
+}

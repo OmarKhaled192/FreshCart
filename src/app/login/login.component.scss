@@ -1,0 +1,27 @@
+.cursor-notAllowed {
+  cursor: not-allowed;
+}
+.w-fit-content {
+  width: fit-content;
+}
+h2 {
+  font-size: 20px;
+  color: #555;
+  text-transform: uppercase;
+}
+label {
+  text-transform: capitalize;
+  text-indent: -10px;
+  margin: 5px;
+  color: #777;
+  font-size: 18px;
+}
+input {
+  box-shadow: unset !important;
+}
+.formForget button[type=submit]:hover {
+  color: #fff;
+}
+.modal-dialog {
+  margin-top: 100px !important;
+}

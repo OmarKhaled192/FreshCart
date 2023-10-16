@@ -1,0 +1,14 @@
+<div class="container my-5 py-5">
+  <div class="row">
+    <div class="col-lg-2 col-12 cursor-pointer" *ngFor="let prod of allCats">
+          <div class="prod">
+            <mat-card>
+              <mat-card-content>
+                <img [src]="prod.image" alt="" class="img-fluid">
+                <h2 class="text-center">{{prod.name}}</h2>
+              </mat-card-content>
+            </mat-card>
+          </div>
+    </div>
+  </div>
+</div>

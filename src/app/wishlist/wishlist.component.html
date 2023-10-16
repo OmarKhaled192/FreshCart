@@ -1,0 +1,31 @@
+<div class="container my-5 py-5">
+  <section class="exist" *ngIf="wishlistCount">
+    <div class="products px-5" *ngFor="let p of allProducts; let i = index" >
+      <div class="oneProduct  row justify-content-center justify-content-lg-between w-100 w-lg-75 align-items-center ">
+        <div class="col-6 mx-auto col-lg-2">
+          <img [src]="p.imageCover" [alt]="p.title" class="img-fluid ">
+        </div>
+
+        <div class="col-12 col-lg-4 text-center text-success">
+          <p class="fs-4">{{p.title.length>3?p.title.split(' ').slice(0, 3).join(' '):p.title}}
+          </p>
+          <p class="fs-6">{{p.category.name}}</p>
+          <p class="fs-5"> <span>Store Quantity:</span>
+            <span class="text-success m-2 ">{{p.quantity}}</span>
+          </p>
+        </div>
+
+        <div class="col-12 col-lg-3 text-secondary d-flex justify-content-lg-between justify-content-center align-items-center">
+          <p class="price text-info fs-4 py-1 mx-2 text-center"><span class="price fs-5 fw-bold">Price :</span> {{p.price}} L.E</p>
+        </div>
+        <div class="col-12 col-lg-3 text-secondary d-flex justify-content-center justify-content-lg-end align-items-center gap-1">
+            <button class="btn btn-success text-capitalize px-3 py-2 rounded-circle" (click)="addCartClick(p._id, i)"><i class="fa-solid fa-cart-plus fa-2x " *ngIf="!wishAdd[i]"></i><i class="fas fa-spinner fa-pulse" *ngIf="wishAdd[i]"></i></button>
+            <button class="btn btn-danger text-capitalize px-3 py-2 rounded-circle" (click)="deleteItemFromWish(p._id, i)"><i class="fa-solid fa-trash-can fa-2x" *ngIf="!wishDel[i]"></i><i class="fas fa-spinner fa-pulse" *ngIf="wishDel[i]"></i></button>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="not-exist text-center" *ngIf="!wishlistCount">
+    <img src="assets/images/no-wish-list.png" alt="no wish list items">
+  </section>
+</div>

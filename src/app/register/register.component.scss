@@ -1,0 +1,38 @@
+.cursor-notAllowed {
+  cursor: not-allowed;
+}
+
+.w-fit-content {
+  width: fit-content;
+}
+
+h2 {
+  font-size: 20px;
+  color: #555;
+  text-transform: uppercase;
+}
+label {
+  text-transform: capitalize;
+  text-indent: -10px;
+  margin: 5px;
+  color: #777;
+  font-size: 18px;
+}
+input {
+  box-shadow: unset !important;
+}
+.errorMsg {
+  animation: decreaseOpacity;
+  animation-duration: 3s;
+  animation-play-state: running;
+  animation-direction: normal;
+  opacity: 1;
+}
+@keyframes decreaseOpacity {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}

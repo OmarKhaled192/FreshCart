@@ -1,0 +1,75 @@
+<div class="container">
+  <div class="d-flex flex-column flex-lg-row ">
+    <div class="fisrtPart w-100 w-lg-75 ">
+      <!-- exist cart  -->
+      <section class="exist" *ngIf="this._CartService.cartCount.getValue()">
+        <div class="d-flex flex-column flex-lg-row justify-content-between align-items-center w-75 pt-lg-5 ">
+          <h2 class="fw-bold fs-1 coverage pt-5 my-5 my-lg-0 py-lg-5 text-success">Your Shopping Cart</h2>
+          <button class="btn btn-outline-danger h-25" (click)="removeAll()">Clear your cart <i class="fa-solid fa-broom mx-2 "></i> </button>
+        </div>
+        <div class="products px-5" *ngFor="let p of allProducts; let i = index" >
+          <div class="oneProduct row justify-content-center justify-content-lg-between align-items-center ">
+            <div class="col-12 col-lg-3">
+              <img [src]="p.product?.imageCover" [alt]="p.title" class="img-fluid">
+            </div>
+            <div class="col-12 col-lg-3 text-center text-success">
+              <p class="fs-6 fw-bold text-nowrap">{{p.product?.title.length>3?p.product?.title.split(' ').slice(0, 3).join(' '):p.product?.title}}
+              </p>
+              <p class="fs-6">{{p.product?.category.name}}</p>
+              <p class="fs-5"> <span>Quantity is :</span>
+                <span class="text-success m-2 " *ngIf="!loadCount[i]" >{{p.count}}</span>
+                <span class="text-success m-2 " *ngIf="loadCount[i]"><i class="fas fa-spinner fa-2xs fa-pulse"></i></span>
+              </p>
+            </div>
+            <div class="col-12 col-lg-2 count fs-3 d-flex gap-2 text-info align-items-center  justify-content-center">
+              <button class="btn btn-info bg-transparent border-0 text-info fs-2"><i (click)="updateCount(p.product?._id, p.count-1, i)" class="fa-solid fa-circle-minus"></i></button>
+              <span class="text-warning"> <i class="fa-regular fa-1"></i> </span>
+
+              <button class="btn btn-info bg-transparent border-0 text-info fs-2"><i (click)="updateCount(p.product?._id, p.count+1, i)" class="fa-solid fa-circle-plus "></i></button>
+            </div>
+            <div class="col-12 col-lg-4 text-secondary d-flex justify-content-between align-items-center">
+              <p class="price fs-6 py-1 mx-2"><span class="price">Price :</span> {{p.price}} L.E</p>
+              <div class="icon fs-2 mx-4" (click)="deleteItemClick(p.product?._id, i)" *ngIf="!loadingDel[i];" data-id=""><i class="fa-solid fa-trash text-danger "></i></div>
+              <div class="icon fs-2 mx-4" *ngIf="loadingDel[i]"><i class="fa-solid fa-trash text-danger fa-bounce"></i></div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <div class="notExists" *ngIf="!this._CartService.cartCount.getValue()">
+        <div class="image py-3 w-100 mx-auto">
+          <img src="assets/images/cartEmpty.webp" class="w-100" alt="">
+        </div>
+      </div>
+
+    </div>
+    <div class="secPart w-100 w-lg-25 py-5">
+        <h2 class="text-uppercase">Order Summary </h2>
+        <div class="info">
+          <div class="subtotal">
+            <p>subtotal (1):</p>
+            <p>45.00 L.E</p>
+          </div>
+          <div class="tax">
+            <p>Estimated Tax:</p>
+            <p>0.00 L.E</p>
+          </div>
+          <div class="shipping">
+            <p>Estimated Shipping:</p>
+            <p>4.99 L.E</p>
+          </div>
+        </div>
+        <div class="seperator"></div>
+        <h2 class="text-uppercase">Estimated Total: <span class="text-success ">{{totalPrice?totalPrice:0}}</span></h2>
+        <div class="info">
+          <p>4 interest-free payment of 12.49 L.E <span class="text-success fw-bold">FreshCart </span> <a href="#" class="text-dark">learn more</a></p>
+        </div>
+        <div class="seperator"></div>
+        <h6 class="pt-100 fs-6 fw-bold">Apply Promo Code </h6>
+        <div class="promo-code d-flex justify-content-between gap-2">
+          <input type="number" class="form-control shadow-none" placeholder="Enter Promo Code...">
+          <button class="btn btn-dark">Apply</button>
+        </div>
+        <button class="btn btn-outline-dark w-100 text-center my-3" [routerLink]="['/checkout', cartId]"> checkout </button>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,69 @@
+<nav class="navbar navbar-expand-lg bg-light py-3 position-fixed top-0 w-100 shadow-sm">
+  <div class="container">
+    <a class="navbar-brand" routerLink="home"><img src="assets/images/freshcart-logo.svg" alt="freshcart-logo"></a>
+    <button class="navbar-toggler" type="button"  data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse d-lg-flex justify-content-end" [class.justify-content-between]="isLogin" id="navbarSupportedContent">
+      <ul class="navbar-nav text-center text-lg-start" *ngIf="isLogin">
+        <li class="nav-item active">
+          <a class="nav-link mx-2 rounded-1" routerLink="home" routerLinkActive="text-white bg-success ">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link mx-2 rounded-1" routerLink="products" routerLinkActive="text-white bg-success ">Products</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link mx-2 rounded-1" routerLink="wishlist" routerLinkActive="text-white bg-success ">Wishlist</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link nav-link mx-2 rounded-1" routerLinkActive="text-white bg-success" routerLink="categories">Categories</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link nav-link mx-2 rounded-1" routerLinkActive="text-white bg-success" routerLink="brands">Brands</a>
+        </li>
+
+      </ul>
+      <ul class="navbar-nav text-capitalize ">
+        <div class="nav-item d-flex align-items-center py-5 py-lg-0 justify-content-around justify-content-lg-between">
+          <li>
+            <a class="nav-link" href="https://www.facebook.com"><i class="fa-brands fa-xl fa-facebook"></i></a>
+          </li>
+          <li>
+            <a class="nav-link" href="https://www.twitter.com"><i class="fa-brands fa-xl fa-twitter"></i></a>
+          </li>
+          <li>
+            <a class="nav-link" href="https://www.linkedin.com"><i class="fa-brands fa-xl fa-linkedin"></i></a>
+          </li>
+          <li>
+            <a class="nav-link" href="https://www.youtube.com"><i class="fa-brands fa-xl fa-youtube"></i></a>
+          </li>
+          <li>
+            <a class="nav-link" href="https://www.google.com"><i class="fa-brands fa-xl fa-google"></i></a>
+          </li>
+          <li>
+            <a class="nav-link" href="https://www.tiktok.com"><i class="fa-brands fa-xl fa-tiktok"></i></a>
+          </li>
+        </div>
+        <div class="nav-item d-flex align-items-center justify-content-between">
+          <li *ngIf="!isLogin">
+            <a class="nav-link" routerLink="register">register</a>
+          </li>
+          <li *ngIf="!isLogin">
+            <a class="nav-link" routerLink="login">login</a>
+          </li>
+          <li class="text-success mx-3 d-flex align-items-center justify-content-between gap-2" *ngIf="isLogin">
+              <a><i class="fa-solid fa-user fa-xl d-block"></i></a>
+              <a>{{userName}}</a>
+          </li>
+          <li class="text-info mx-lg-4 position-relative" *ngIf="isLogin" routerLink="cart">
+            <i class="fa-solid fa-cart-shopping fa-xl"></i>
+            <span class="cartCount rounded-circle border border-1 border-warning text-warning text-white">{{this._CartService.cartCount.getValue()}}</span>
+          </li>
+          <li id="signout" *ngIf="isLogin">
+            <a class="fs-6 btn btn-outline-danger" (click)="logout()">logout <i class="fa-solid fa-arrow-right-to-bracket"></i></a>
+          </li>
+        </div>
+      </ul>
+    </div>
+  </div>
+</nav>

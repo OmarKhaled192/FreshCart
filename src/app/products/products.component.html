@@ -1,0 +1,26 @@
+<div class="container py-5 my-5">
+  <div class="row">
+    <div class="search py-3 w-75 mx-auto">
+      <input type="text" [(ngModel)]="searchVal" (input)="searchFun(searchVal)"  class="form-control px-3 py-2 shadow-none " placeholder="search for product....">
+    </div>
+  </div>
+  <div class="row">
+    <div *ngFor="let product of allProducts; let i = index" class="product col-lg-2 py-2">
+      <div>
+          <img [src]="product.imageCover" [alt]="product.title" class="img-fluid cursor-pointer" [routerLink]="['/productDetails', product._id]" >
+        <div class="title-wishlist d-flex justify-content-between align-items-center">
+          <div class="title">
+            <p class="text-success font-sm">{{product.category.name}}</p>
+            <p class="text-muted">{{product.title.length>2?product.title.split(" ").slice(0, 2).join(" "):product.title}}</p>
+          </div>
+          <div class="wishlist text-danger cursor-pointer" ><i class="fa-regular fa-heart fa-2x" *ngIf="!wishAdd[i]" (click)="addItemToWish(product._id, i)"></i><i class="fa-solid fa-heart fa-2x" *ngIf="wishAdd[i]" (click)="deleteItemFromWish(product._id, i)"></i></div>
+        </div>
+        <div class="info d-flex justify-content-between pt-1 py-4">
+          <p class="price">{{product.price}} L.E</p>
+          <p class="rating"><i class="fa-solid fa-star text-warning"></i> {{product.ratingsAverage}}</p>
+        </div>
+      </div>
+      <button (click)="addCartClick(product._id, i)" class="btn btn-success w-100">Add to Cart <i class="fas fa-spinner fa-pulse" *ngIf="loadingAdd[i]"></i></button>
+    </div>
+  </div>
+</div>
