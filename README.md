@@ -13,10 +13,10 @@
 - Home Page:
 - ![image](https://github.com/OmarKhaled192/FreshCart/assets/94392724/1afa62c4-853a-49f6-b3a8-bd7499b0ad48)
 
-- Search Page: (you can search on any product by a substring like product name string)
+- Search Page: (you can search on any product by a substring like product name string).
 - ![image](https://github.com/OmarKhaled192/FreshCart/assets/94392724/5ad2ef9d-9257-48ab-9f81-b137eb9f8a20)
 
-- Wishlist Page: (menu of product whish you prefered)
+- Wishlist Page: (menu of product whish you prefered).
 - ![image](https://github.com/OmarKhaled192/FreshCart/assets/94392724/b2e91b26-399e-4faa-b941-2a032db53bcd)
 
 - Categories Page:
@@ -26,8 +26,8 @@
 - ![image](https://github.com/OmarKhaled192/FreshCart/assets/94392724/0bb7cb6f-b67f-4d53-88f1-94effc023aba)
 
 - Cart Page: 
-![image](https://github.com/OmarKhaled192/FreshCart/assets/94392724/0fe2f522-4ac3-40ef-9422-e8e8c60121b1)
+- ![image](https://github.com/OmarKhaled192/FreshCart/assets/94392724/0fe2f522-4ac3-40ef-9422-e8e8c60121b1)
 
 - Product details Page:
-![image](https://github.com/OmarKhaled192/FreshCart/assets/94392724/143e02fe-b26e-4395-a8d8-14abdacce516)
+- ![image](https://github.com/OmarKhaled192/FreshCart/assets/94392724/143e02fe-b26e-4395-a8d8-14abdacce516)
 
