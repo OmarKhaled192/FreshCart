@@ -1,6 +1,6 @@
 # FreshCart
 - FreshCart Ecommerce Website Using Angular
-- You Can visit demo  https://omarkhaled192.github.io/FreshCart
+- You Can visit demo  <a href="https://omarkhaled192.github.io/FreshCart" target="_blank" />https://omarkhaled192.github.io/FreshCart</a>
 
 ## Screens
 - home page cannot be allowed when you don't registered, you must register firstly, or login if you have an account,
